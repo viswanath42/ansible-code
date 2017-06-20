@@ -1,0 +1,6 @@
+#s3_artifact_url: "https://s3.amazonaws.com/artifacts-repo1/CIS-0.0.1-SNAPSHOT.war"
+DOCKER_USER: "viswa123"
+DOCKER_PASS: ""
+docker_container_name: "dev_dhr_app"
+docker_container_port: 8080
+docker_image_name: "viswa123/apache_tomcat"

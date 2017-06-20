@@ -1,0 +1,22 @@
+---
+- hosts: dev
+  become: true
+  become_user: ec2-user
+  become_method: sudo
+
+
+  tasks:
+    - name: login to docker hub
+      command: docker login --username={{ DOCKER_USER }} --password={{ DOCKER_PASS }}
+
+    - name: stop previously running docker container, if any
+      command: docker stop {{ docker_container_name }}
+
+    - name: remove the application container
+      command: docker rm {{ docker_container_name }}
+
+    - name: pull docker image
+      command: "docker pull {{ docker_container_name }}"
+
+    - name: run container
+      command: "docker run -d -p {{ docker_container_port }}:8080 --name {{ docker_container_name }} {{ docker_image_name }}"
